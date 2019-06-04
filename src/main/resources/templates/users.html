@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head th:include="layout :: head">
+    </head>
+    <body>
+        <div th:include="layout :: navigationPanel"></div>
+        <h1>Lista użytkowników:</h1>
+        <div th:if="${#lists.isEmpty(userlist)}">
+            Brak użytkowników w bazie danych...
+        </div>
+        <table th:if="${!#lists.isEmpty(userlist)}">
+            <thead>
+                <tr>
+                    <th>UserID</th>
+                    <th>Imie</th>
+                    <th>Nazwisko</th>
+                    <th>Login</th>
+                    <th>Zaszyfrowane hasło</th>
+                    <th>Usuwanie</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user: ${userlist}">
+                    <td th:text="${user.userid}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.surname}"></td>
+                    <td th:text="${user.login}"></td>
+                    <td th:text="${user.password}"></td>
+                    <td sec:authorize="isAuthenticated()">
+                        <a th:href="@{/deleteUser(user=${user.login})}">Usuń</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:include="layout :: footer"></div>
+    </body>
+</html>

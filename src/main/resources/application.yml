@@ -1,0 +1,29 @@
+server:
+    port: 8080
+spring:
+    datasource:
+        url: jdbc:h2:mem:loginappdb
+        username: admin
+        password: admin
+        driverClassName: org.h2.Driver
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+
+google:
+    client:
+      clientId: C_ID
+      clientSecret: C_SEC
+      accessTokenUri: https://www.googleapis.com/oauth2/v3/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+      scope: profile email
+    resource:
+      userInfoUri: https://www.googleapis.com/userinfo/v2/me
+      preferTokenInfo: false
+
